@@ -23,5 +23,5 @@ From a **beneficial standpoint**, teachers gain significant advantages, includin
 Below are some screenshots showcasing the application interface:
 
 ![Screenshot 1](https://github.com/sivasks2004/Student_Event_Management_System_SEMS/blob/main/Screenshots_/Screenshot%202025-03-17%20091559.png)
-![Screenshot 2](path/to/screenshot2.png)
-![Screenshot 3](path/to/screenshot3.png)
+![Screenshot 2](https://github.com/sivasks2004/Student_Event_Management_System_SEMS/blob/main/Screenshots_/Screenshot%202025-03-17%20091619.png)
+![Screenshot 3](https://github.com/sivasks2004/Student_Event_Management_System_SEMS/blob/main/Screenshots_/Screenshot%202025-03-17%20091651.png)
