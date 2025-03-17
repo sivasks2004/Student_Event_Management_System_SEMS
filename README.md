@@ -26,7 +26,7 @@ Below are some screenshots showcasing the application interface & you can able t
   <table>
     <tr>
       <td><img src="https://github.com/sivasks2004/Student_Event_Management_System_SEMS/blob/main/Screenshots_/Screenshot%202025-03-17%20091559.png" width="400"></td>
-      <td><img src="https://github.com/sivasks2004/Student_Event_Management_System_SEMS/blob/main/Screenshots_/Screenshot%202025-03-17%20091619.png" width="400"></td>
+      <td><img src="https://github.com/sivasks2004/Student_Event_Management_System_SEMS/blob/main/Screenshots_/Screenshot%202025-03-17%20091651.png" width="400"></td>
     </tr>
     <tr>
       <td><img src="https://github.com/sivasks2004/Student_Event_Management_System_SEMS/blob/main/Screenshots_/Screenshot%202025-03-17%20091651.png" width="400">
