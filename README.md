@@ -20,7 +20,7 @@ From a **beneficial standpoint**, teachers gain significant advantages, includin
 - 📊 **Dashboard for Event Statistics**
 
 ## 📸 Screenshots
-Below are some screenshots showcasing the application interface:
+Below are some screenshots showcasing the application interface & you can able to see the remaining images in screenshots folder:
 
 <div align="center">
   <table>
