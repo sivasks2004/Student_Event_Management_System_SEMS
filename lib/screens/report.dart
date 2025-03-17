@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:path_provider/path_provider.dart';
 import 'dart:io';
@@ -10,7 +9,7 @@ import 'dart:io';
 import 'user_screen.dart';
 
 class Report extends StatefulWidget {
-  const Report({super.key});
+  const Report();
 
   @override
   State<Report> createState() => _ReportState();
@@ -20,8 +19,6 @@ class _ReportState extends State<Report> {
   TextEditingController searchController = TextEditingController();
   TextEditingController collegeController = TextEditingController();
   TextEditingController yearController = TextEditingController();
-  TextEditingController fromDateController = TextEditingController();
-  TextEditingController toDateController = TextEditingController();
   String eventType = 'None';
   String position = 'None';
   List<dynamic> events = [];
@@ -44,11 +41,10 @@ class _ReportState extends State<Report> {
   }
 
   Future<void> fetchEvents() async {
-    final String apiUrl =
-        "http://localhost:5000/view-events"; // Replace if needed
+    final String apiUrl = "http://localhost:5000/view-events"; // Replace if needed
 
     try {
-      final response = await http.get(
+        final response = await http.get(
         Uri.parse(
           email.endsWith('@kongu.ac.in') ? apiUrl : "$apiUrl?email=$email",
         ),
@@ -56,7 +52,7 @@ class _ReportState extends State<Report> {
 
       if (response.statusCode == 200) {
         setState(() {
-          events = json.decode(response.body).reversed.toList();
+         events = json.decode(response.body).reversed.toList();
           filteredEvents = events;
           isLoading = false;
         });
@@ -73,13 +69,12 @@ class _ReportState extends State<Report> {
 
   void filterEvents() async {
     final queryParameters = {
-      if (!email.endsWith('@kongu.ac.in')) 'email': email,
+         if (!email.endsWith('@kongu.ac.in'))
+      'email': email,
       'year': yearController.text,
       'symposiumName': searchController.text,
       'college': collegeController.text,
       'interOrIntraEvent': eventType == 'None' ? '' : eventType,
-      'fromDate': fromDateController.text,
-      'toDate': toDateController.text,
       'position': position == 'None' ? '' : position,
     };
 
@@ -189,28 +184,9 @@ class _ReportState extends State<Report> {
       searchController.clear();
       collegeController.clear();
       yearController.clear();
-      fromDateController.clear();
-      toDateController.clear();
+      position = 'None';  
       eventType = 'None';
-      position = 'None';
     });
-  }
-
-  Future<void> _selectDate(
-    BuildContext context,
-    TextEditingController controller,
-  ) async {
-    final DateTime? picked = await showDatePicker(
-      context: context,
-      initialDate: DateTime.now(),
-      firstDate: DateTime(2000),
-      lastDate: DateTime(2101),
-    );
-    if (picked != null) {
-      setState(() {
-        controller.text = picked.toIso8601String().split('T').first;
-      });
-    }
   }
 
   @override
@@ -317,16 +293,6 @@ class _ReportState extends State<Report> {
                                 "Year",
                                 Icons.calendar_today,
                               ),
-                              _buildDateFilterField(
-                                fromDateController,
-                                "From Date",
-                                Icons.date_range,
-                              ),
-                              _buildDateFilterField(
-                                toDateController,
-                                "To Date",
-                                Icons.date_range,
-                              ),
                               Padding(
                                 padding: const EdgeInsets.symmetric(
                                   vertical: 8.0,
@@ -356,7 +322,7 @@ class _ReportState extends State<Report> {
                                   },
                                 ),
                               ),
-                              Padding(
+                               Padding(
                                 padding: const EdgeInsets.symmetric(
                                   vertical: 8.0,
                                 ),
@@ -580,30 +546,6 @@ class _ReportState extends State<Report> {
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: TextField(
         controller: controller,
-        decoration: InputDecoration(
-          labelText: label,
-          prefixIcon: Icon(icon),
-          suffixIcon: IconButton(
-            icon: Icon(Icons.clear),
-            onPressed: () => _clearFilter(controller),
-          ),
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildDateFilterField(
-    TextEditingController controller,
-    String label,
-    IconData icon,
-  ) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
-      child: TextField(
-        controller: controller,
-        readOnly: true,
-        onTap: () => _selectDate(context, controller),
         decoration: InputDecoration(
           labelText: label,
           prefixIcon: Icon(icon),

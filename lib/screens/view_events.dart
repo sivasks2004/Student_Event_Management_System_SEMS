@@ -31,11 +31,14 @@ class _ViewEventsState extends State<ViewEvents> {
   }
 
   Future<void> fetchEvents() async {
-    final String apiUrl = "http://localhost:5000/view-events"; // Replace if needed
+    final String apiUrl =
+        "http://localhost:5000/view-events"; // Replace if needed
 
     try {
       final response = await http.get(
-        Uri.parse(email.endsWith('@kongu.ac.in') ? apiUrl : "$apiUrl?email=$email&rollNumber=$rollNumber"),
+        Uri.parse(
+          email.endsWith('@kongu.ac.in') ? apiUrl : "$apiUrl?email=$email",
+        ),
       );
 
       if (response.statusCode == 200) {
